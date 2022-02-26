@@ -1,6 +1,7 @@
 package com.company.ecommerce.product.controller;
 
 import com.company.ecommerce.product.service.ProductNotFoundException;
+import com.company.ecommerce.product.service.ProductOutOfStockException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,5 +17,14 @@ public class ProductControllerAdvice {
     public ProductErrorResponse productNotFound(ProductNotFoundException e){
         return new ProductErrorResponse("Product Id="+e.getMessage()+" not found.");
     }
+
+    @ExceptionHandler(ProductOutOfStockException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ProductErrorResponse productOutOfStock(ProductOutOfStockException e){
+        return new ProductErrorResponse("Product Id="+e.getMessage()+" out of stock.");
+    }
+
+
 
 }

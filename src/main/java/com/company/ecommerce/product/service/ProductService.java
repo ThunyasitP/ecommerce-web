@@ -4,7 +4,6 @@ import com.company.ecommerce.product.controller.ProductResponse;
 import com.company.ecommerce.product.repository.Product;
 import com.company.ecommerce.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -3,6 +3,7 @@ package com.company.ecommerce.product.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,5 +20,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query(value = "SELECT p FROM Product p WHERE p.id = :id")
     Optional<Product> findProductById(@Param("id")  int id);
+
+
+    @Modifying
+    @Query(value = "UPDATE Product p SET p.total_stock = :total  WHERE p.id = :id")
+    void updateTotalById(@Param("id")  int id, @Param("total")  int total);
+
+
 
 }
