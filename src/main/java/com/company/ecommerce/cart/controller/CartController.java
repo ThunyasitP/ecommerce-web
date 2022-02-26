@@ -21,4 +21,11 @@ public class CartController {
         return new CartResponse(requestAddCart.getProduct_id(), requestAddCart.getTotal());
     }
 
+
+    @GetMapping("/carts/{memberId}")
+    public List<CartResponse> getProductInCart(@PathVariable int memberId){
+        List<CartResponse> responses = cartService.findCartByMember(memberId);
+        return responses;
+    }
+
 }

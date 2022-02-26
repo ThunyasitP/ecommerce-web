@@ -21,6 +21,11 @@ public interface CartRepository extends JpaRepository<Cart, CartKey> {
     @Query(value = "SELECT c.* FROM cart c WHERE c.member_id = :memberId AND c.product_id = :productId ", nativeQuery = true)
     Optional<Cart> findCartsWithMemberAndProduct(@Param("memberId") int memberId, @Param("productId") int productId);
 
+
+    @Query(value = "SELECT c.* FROM cart c WHERE c.member_id = :memberId", nativeQuery = true)
+    List<Cart> findCartsByMember(@Param("memberId") int memberId);
+
+
     List<Cart> findAll();
 
 
