@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -20,9 +21,11 @@ public class ProductController {
         return responses;
     }
 
-    @GetMapping("/products/{name}")
-    public List<ProductResponse> getProductsByName(@PathVariable String name){
+    @GetMapping("/products/")
+    public List<ProductResponse> getProductsByName(@RequestParam(value="name") String name){
         List<ProductResponse> responses = productService.findProductByName(name);
         return responses;
     }
+
+
 }

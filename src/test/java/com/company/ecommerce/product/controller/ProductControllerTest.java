@@ -101,7 +101,7 @@ class ProductControllerTest {
         responses.add(product1);
         when(productRepository.findProductByName("London")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/London", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=London", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(1, result.size());
@@ -118,7 +118,7 @@ class ProductControllerTest {
         responses.add(product4);
         when(productRepository.findProductByName("Shirt")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/Shirt", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=Shirt", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(2, result.size());
@@ -131,7 +131,7 @@ class ProductControllerTest {
         List<Product> responses = new ArrayList<>();
         when(productRepository.findProductByName("TEST")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/TEST", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=TEST", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(0, result.size());
@@ -148,22 +148,22 @@ class ProductControllerTest {
         responses.add(product4);
         when(productRepository.findProductByName("shirt")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/shirt", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=shirt", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(2, result.size());
     }
 
     @Test
-    @DisplayName("ส่ง H&M T-Shirt จะได้ผลลัพธ์ 1 รายการ")
+    @DisplayName("ส่ง H%2526M%20T-Shirt จะได้ผลลัพธ์ 1 รายการ")
     void success_find_product_by_fullname_show_1_products() {
         // Arrange
         Product product4 = new Product(4, "H&M T-Shirt", "https://www.shutterstock.com/de/image-photo/new-york-circa-march-2016-close-444910246", 299, 0, 2000, "2022-02-16 08:30:00", "2022-02-16 08:30:00");
         List<Product> responses = new ArrayList<>();
         responses.add(product4);
-        when(productRepository.findProductByName("H&M T-Shirt")).thenReturn(responses);
+        when(productRepository.findProductByName("H%2526M%20T-Shirt")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/H&M T-Shirt", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=H%2526M%20T-Shirt", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(1, result.size());
@@ -182,7 +182,7 @@ class ProductControllerTest {
         responses.add(product8);
         when(productRepository.findProductByName("เสื้อยืด")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/เสื้อยืด", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=เสื้อยืด", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(3, result.size());
@@ -195,7 +195,7 @@ class ProductControllerTest {
         List<Product> responses = new ArrayList<>();
         when(productRepository.findProductByName("เสื้อแขนยาว")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/เสื้อแขนยาว", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=เสื้อแขนยาว", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(0, result.size());
@@ -208,7 +208,7 @@ class ProductControllerTest {
         List<Product> responses = new ArrayList<>();
         when(productRepository.findProductByName("")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(0, result.size());
@@ -221,7 +221,7 @@ class ProductControllerTest {
         List<Product> responses = new ArrayList<>();
         when(productRepository.findProductByName("")).thenReturn(responses);
         // Act
-        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/", ProductResponse[].class);
+        ResponseEntity<ProductResponse[]> responseEntity = testRestTemplate.getForEntity("/products/?name=", ProductResponse[].class);
         List<ProductResponse> result = Arrays.asList(responseEntity.getBody());
         // Assert
         assertEquals(0, result.size());
