@@ -9,6 +9,9 @@ public class ProductResponse {
     private float discount;
     private int totalStock;
 
+    public ProductResponse() {
+    }
+
     public ProductResponse(int id, String name, String image, float price, float discount, int totalStock) {
         this.id = id;
         this.name = name;
