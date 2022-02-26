@@ -5,16 +5,13 @@ import com.company.ecommerce.product.repository.Product;
 import com.company.ecommerce.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class ProductService {
 
     @Autowired
@@ -56,8 +53,11 @@ public class ProductService {
 
     public ProductResponse findProductById(int productId) {
         Optional<Product> product = productRepository.findProductById(productId);
-        ProductResponse response = convertProductRepositoryToResponse(product.get());
-        return response;
+        if(product.isPresent()){
+            ProductResponse response = convertProductRepositoryToResponse(product.get());
+            return response;
+        }
+        throw new ProductNotFoundException(productId);
     }
 
 

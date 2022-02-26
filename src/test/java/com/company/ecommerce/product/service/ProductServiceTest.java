@@ -1,5 +1,6 @@
 package com.company.ecommerce.product.service;
 
+import com.company.ecommerce.product.controller.ProductErrorResponse;
 import com.company.ecommerce.product.controller.ProductResponse;
 import com.company.ecommerce.product.repository.Product;
 import com.company.ecommerce.product.repository.ProductRepository;
@@ -11,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -237,5 +239,21 @@ class ProductServiceTest {
         // Assert
         assertEquals(0, result.size());
     }
+
+
+    @Test
+    @DisplayName("ส่ง id=2 จะได้ผลลัพธ์ id=2")
+    void success_find_product_by_has_id() {
+        // Arrange
+        Product product = new Product(2, "CPS Jeans", "https://www.shutterstock.com/de/image-photo/bangkok-thailand-asia-august-10-2019-1475328572", 1700, 170, 60, "2022-02-14 08:30:00", "2022-02-14 08:30:00");
+        when(productRepository.findProductById(2)).thenReturn(Optional.of(product));
+        // Act
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+        ProductResponse result = productService.findProductById(2);
+        // Assert
+        assertEquals(2, result.getId());
+    }
+
 
 }

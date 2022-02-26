@@ -227,4 +227,32 @@ class ProductControllerTest {
         assertEquals(0, result.size());
     }
 
+
+    @Test
+    @DisplayName("ส่ง 3 จะได้ผลลัพธ์ id=3")
+    void success_find_product_by_id() {
+
+        // Arrange
+        Product product3 = new Product(3, "AMP Hat", "https://www.shutterstock.com/de/image-vector/be-kind-tee-t-shirt-adult-1974478163", 750, 0, 80, "2022-02-15 08:30:00", "2022-02-15 08:30:00");
+        when(productRepository.findProductById(3)).thenReturn(Optional.of(product3));
+        // Act
+        ProductResponse responseEntity = testRestTemplate.getForObject("/products/3", ProductResponse.class);
+        // Assert
+        assertEquals(3, responseEntity.getId());
+    }
+
+
+    @Test
+    @DisplayName("ส่ง 2 จะได้ผลลัพธ์ error")
+    void fail_find_product_by_id() {
+
+        // Arrange
+        Product product3 = new Product(2, "AMP Hat", "https://www.shutterstock.com/de/image-vector/be-kind-tee-t-shirt-adult-1974478163", 750, 0, 80, "2022-02-15 08:30:00", "2022-02-15 08:30:00");
+        when(productRepository.findProductById(2)).thenReturn(Optional.of(product3));
+        // Act
+        ProductErrorResponse responseEntity = testRestTemplate.getForObject("/products/3", ProductErrorResponse.class);
+        // Assert
+        assertEquals("Product Id=3 not found.", responseEntity.getMessage());
+    }
+
 }

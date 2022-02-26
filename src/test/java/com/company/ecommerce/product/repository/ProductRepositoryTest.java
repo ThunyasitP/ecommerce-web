@@ -142,7 +142,7 @@ class ProductRepositoryTest {
     void success_find_product_by_id(){
         // Arrange
         // Act
-        Optional<Product>  result = productRepository.findProductById(2);
+        Optional<Product>  result = productRepository.findById(2);
 
         // Assert
         assertTrue(result.isPresent());
@@ -154,7 +154,7 @@ class ProductRepositoryTest {
     void success_find_product_by_no_id(){
         // Arrange
         // Act
-        Optional<Product> result = productRepository.findProductById(100);
+        Optional<Product> result = productRepository.findById(100);
 
         // Assert
         assertFalse(result.isPresent());
