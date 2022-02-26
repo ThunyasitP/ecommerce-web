@@ -38,7 +38,40 @@ class ProductServiceTest {
         responses.add(product4);
         responses.add(product5);
         when(productRepository.findAllProducts()).thenReturn(responses);
+        // Act
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+        List<ProductResponse> result = productService.findAllProducts();
+        // Assert
+        assertEquals(5, result.size());
+    }
 
+
+    @Test
+    @DisplayName("เรียก products ได้ข้อมูล product 1 รายการ")
+    void success_find_all_product_show_1_products() {
+
+        // Arrange
+        Product product1 = new Product(1, "Boy London T-Shirt", "https://www.shutterstock.com/de/image-vector/grunge-london-flag-tshirt-printing-vector-337267853", 3500, 500, 50, "2022-01-13 08:30:00", "2022-01-13 08:30:00");
+        List<Product> responses = new ArrayList<>();
+        responses.add(product1);
+        when(productRepository.findAllProducts()).thenReturn(responses);
+        // Act
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+        List<ProductResponse> result = productService.findAllProducts();
+        // Assert
+        assertEquals(1, result.size());
+    }
+
+
+    @Test
+    @DisplayName("เรียก products ได้ข้อมูล product 0 รายการ")
+    void success_find_all_product_show_0_products() {
+
+        // Arrange
+        List<Product> responses = new ArrayList<>();
+        when(productRepository.findAllProducts()).thenReturn(responses);
         // Act
         ProductService productService = new ProductService();
         productService.setProductRepository(productRepository);
