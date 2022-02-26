@@ -15,8 +15,8 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Test
-    @DisplayName("findAllProducts()")
-    void findAllProducts(){
+    @DisplayName("findProductsAll()")
+    void findProductsAll(){
         // Arrange
         Product product1 = new Product(6, "Boy London T-Shirt", "https://www.shutterstock.com/de/image-vector/grunge-london-flag-tshirt-printing-vector-337267853", 3500, 500, 50, "2022-01-13 08:30:00", "2022-01-13 08:30:00");
         productRepository.save(product1);
@@ -26,6 +26,5 @@ class ProductRepositoryTest {
         // Assert
         assertEquals(6, result.size());
     }
-
 
 }
