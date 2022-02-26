@@ -16,4 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT p FROM Product p WHERE ( p.name LIKE %:product% OR LOWER(p.name) LIKE %:product% ) AND ( p.name <> '' AND  p.name IS NOT NULL AND LEN(p.name) > 0 ) " )
     List<Product> findProductByName( @Param("product")  String product);
 
+    @Query(value = "SELECT p FROM Product p WHERE p.id = :id")
+    List<Product> findProductById( @Param("id")  int id);
+
 }
