@@ -1,0 +1,11 @@
+//GET All
+SELECT * FROM products ORDER BY create_at DESC LIMIT 30;
+
+id
+name
+image
+price
+discount
+total_stock
+create_at
+update_at
