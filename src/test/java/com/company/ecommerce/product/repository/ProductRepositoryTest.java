@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 class ProductRepositoryTest {
@@ -132,6 +133,31 @@ class ProductRepositoryTest {
 
         // Assert
         assertEquals(5, result.size());
+    }
+
+
+
+    @Test
+    @DisplayName("ส่ง id=2 จะได้ผลลัพธ์ True")
+    void success_find_product_by_id(){
+        // Arrange
+        // Act
+        Optional<Product>  result = productRepository.findProductById(2);
+
+        // Assert
+        assertTrue(result.isPresent());
+    }
+
+
+    @Test
+    @DisplayName("ส่ง id=100 จะได้ผลลัพธ์ False")
+    void success_find_product_by_no_id(){
+        // Arrange
+        // Act
+        Optional<Product> result = productRepository.findProductById(100);
+
+        // Assert
+        assertFalse(result.isPresent());
     }
 
 }
