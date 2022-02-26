@@ -15,6 +15,10 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     public List<ProductResponse> findAllProducts(){
         List<Product> result =  productRepository.findAllProducts();
         List<ProductResponse> responses = new ArrayList<>();
