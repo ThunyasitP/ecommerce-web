@@ -2,7 +2,9 @@ package com.company.ecommerce.product.controller;
 
 import com.company.ecommerce.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -15,6 +17,12 @@ public class ProductController {
     @GetMapping("/products")
     public List<ProductResponse> getProductsAll(){
         List<ProductResponse> responses = productService.findAllProducts();
+        return responses;
+    }
+
+    @GetMapping("/products/{name}")
+    public List<ProductResponse> getProductsByName(@PathVariable String name){
+        List<ProductResponse> responses = productService.findProductByName(name);
         return responses;
     }
 }
