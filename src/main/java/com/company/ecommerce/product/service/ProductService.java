@@ -35,4 +35,22 @@ public class ProductService {
         return responses;
     }
 
+
+    public List<ProductResponse> findProductByName( String name ){
+        List<Product> result =  productRepository.findProductByName(name);
+        List<ProductResponse> responses = new ArrayList<>();
+        result.forEach(product -> {
+            responses.add(new ProductResponse(
+                    product.getId(),
+                    product.getName(),
+                    product.getImage(),
+                    product.getPrice(),
+                    product.getDiscount(),
+                    product.getTotal_stock())
+            );
+        });
+        return responses;
+    }
+
+
 }
