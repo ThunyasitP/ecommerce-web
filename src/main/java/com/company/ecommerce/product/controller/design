@@ -10,3 +10,16 @@ GET /products
         "totalStock" : 50
     }
 ]
+
+
+GET /products?name=London
+[
+    {
+        "id" : 1,
+        "name" : "Boy London T-shirt",
+        "image" : "https://www.shutterstock.com/de/image-vector/california-ocean-side-stylish-tshirt-apparel-1180194466",
+        "price" : 3000,
+        "discount" : 500,
+        "totalStock" : 50
+    }
+]
