@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT p FROM Product p")
     List<Product> findAllProducts();
 
-    @Query(value = "SELECT p FROM Product p WHERE p.name LIKE %:product%")
+    @Query(value = "SELECT p FROM Product p WHERE p.name LIKE %:product% OR LOWER(p.name) LIKE %:product%")
     List<Product> findProductByName( @Param("product")  String product);
 
 }
