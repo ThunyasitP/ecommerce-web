@@ -27,4 +27,16 @@ class ProductRepositoryTest {
         assertEquals(6, result.size());
     }
 
+
+    @Test
+    @DisplayName("findProductsByName()")
+    void findProductsByName(){
+        // Arrange
+        // Act
+        List<Product> result = productRepository.findProductByName("AMP");
+
+        // Assert
+        assertEquals(1, result.size());
+    }
+
 }
